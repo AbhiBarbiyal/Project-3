@@ -55,7 +55,7 @@ function draw() {
   ball_y += ball_dy;
   
   textSize(30);
-  text("Score", 30, 40)
+  text(`Score:${score}`, 30, 40)
   
   
   textSize(30);
@@ -71,14 +71,29 @@ function draw() {
   if(ball_y > height -ball_diameter/2 ){
     // ball_x = width/2;
     // ball_y = height - ball_diameter/2;
-    ball_dx = 0;
-    ball_dy = 0;
+    // ball_dx = 0;
+    // ball_dy = 0;
+    if(life > 0){
+      life--;
+      ball_x = width/2;
+      ball_y=height/2;
+      // ball_dx = 0;
+      // ball_dy = 0;
+    }else {
+      alert("GAME OVER")
+       ball_x = width/2;
+      ball_y=height/2;
+      ball_dx = 0;
+      ball_dy = 0;
+    }
+    ball_x += ball_dx;
+    ball_y += ball_dy
     // isTouched = true;
     // if(isTouched) life--;
   }
   if(ball_y + paddle_height + ball_diameter/2 >= height && (ball_x >= paddle_x && ball_x <= paddle_x + paddle_width)){
     ball_dy = -ball_dy;
-    ball_dx = -ball_dx;
+    // ball_dx = -ball_dx;
   }
   if (keyIsDown(LEFT_ARROW)) {
     if(paddle_x > 0){
